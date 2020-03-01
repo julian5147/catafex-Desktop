@@ -1,0 +1,21 @@
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Asignar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let catador of catadores">
+            <th scope="row">{{catador.codigo}}</th>
+            <td>{{catador.nombre}}</td>
+            <td>{{catador.correo}}</td>
+            <td> <button class="btn btn-success btn-block" (click)="cambiarCatador(catador.codigo)"
+                    routerLink="/eventos/{{codigoPanel}}/panel/{{catador.codigo}}/2">Asignar</button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>

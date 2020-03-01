@@ -1,0 +1,25 @@
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Nivel Exeriencia</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let catador of catadores">
+            <th scope="row">{{catador.codigo}}</th>
+            <td>{{catador.nombre}}</td>
+            <td>{{catador.correo}}</td>
+            <td *ngIf="catador.nivelExp ==='EXPERIMENTADO'">
+                <h5><span class="badge badge-success">{{catador.nivelExp}}</span></h5>
+            </td>
+            <td *ngIf="catador.nivelExp ==='SEMIEXPERIMENTADO'">
+                <h5><span class="badge badge-warning">{{catador.nivelExp}}</span></h5>
+            </td>
+
+        </tr>
+
+    </tbody>
+</table>
