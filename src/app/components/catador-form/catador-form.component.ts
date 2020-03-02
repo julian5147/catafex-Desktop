@@ -12,14 +12,13 @@ export class CatadorFormComponent implements OnInit {
   catadores: any = [];
   codigoPanel: string = "";
   codigoEvento: string = "";
+  
   panel: any = null
 
   constructor(private servicioServicios: ServiciosService, private asignacion: PruebaService,
     private r: Router, private route: ActivatedRoute) {
   }
-  cambiarCatador(id: string) {
-    this.asignacion.setCatador(id);
-  }
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
 
