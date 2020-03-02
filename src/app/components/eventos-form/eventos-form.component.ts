@@ -20,7 +20,7 @@ export class EventosFormComponent implements OnInit {
 
     var img = new Image();
     img.src = '../../../assets/grafico.jpeg';
-    console.log("sisisisi ", img.height + " " + img.width);
+    
 
 
     var doc = new jsPDF({

@@ -11,12 +11,11 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class CatadorFormComponent implements OnInit {
   catadores: any = [];
   codigoPanel: string = "";
+  codigoEvento: string = "";
+  panel: any = null
 
   constructor(private servicioServicios: ServiciosService, private asignacion: PruebaService,
     private r: Router, private route: ActivatedRoute) {
-
-
-
   }
   cambiarCatador(id: string) {
     this.asignacion.setCatador(id);
@@ -24,25 +23,47 @@ export class CatadorFormComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
 
-      if (params.has('id')) {
-        this.codigoPanel = params.get('id');
+      if (params.has('idP')) {
+        this.codigoPanel = params.get('idP');
+        this.codigoEvento = params.get('idE');
+        this.asignacion.setPanel(this.codigoPanel);
+        this.asignacion.setEvento(this.codigoEvento);
       }
 
     })
-    if (this.codigoPanel !== "") {
-      this.servicioServicios.getCatadores().subscribe(
-        res => {
-          this.catadores = res;
-          console.log(res);
 
-        },
-        err => console.log(err, "error")
-      );
-    }
-    else {
-      alert("No puede ingresar asi");
 
-    }
+    this.servicioServicios.getPanel(this.codigoPanel).subscribe(
+      res => {
+        console.log(res);
+        if (res) {
+          if (this.codigoPanel !== "") {
+
+            this.servicioServicios.getCatadores().subscribe(
+              res => {
+                this.catadores = res;
+                console.log(res);
+                this.r.navigate([`/eventos/${this.codigoEvento}/panel/${this.codigoPanel}`]);
+             },
+              err => console.log(err, "error")
+            );
+          }
+          else {
+            alert("No puede ingresar asi");
+
+          }
+
+        }
+        else {
+          alert("No se encuentra ese panel")
+          this.r.navigate([`/eventos/${this.codigoEvento}/panel`]);
+        }
+
+      },
+      err => console.log(err, "error")
+    );
+
+
 
 
   }

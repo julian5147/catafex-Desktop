@@ -14,10 +14,14 @@ export class PanelListComponent implements OnInit {
 
   @HostBinding('class') clasess = 'row';
   codigoEvento: string = "";
+  codigoPanel: string = "";
 
 
-  constructor(private serviciosService: ServiciosService, private asignacion: PruebaService
-    , private r: Router, private route: ActivatedRoute) {
+  constructor(
+    private serviciosService: ServiciosService,
+    private asignacion: PruebaService,
+    private r: Router,
+    private route: ActivatedRoute) {
 
   }
   cambiarPanel(id: string) {
@@ -26,11 +30,14 @@ export class PanelListComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(params => {
+      
 
       if (params.has('id')) {
         this.codigoEvento = params.get('id');
+        this.asignacion.setEvento(this.codigoEvento);      
       }
-
+      else
+        alert("no contiene")
     })
 
     this.paneles = [];

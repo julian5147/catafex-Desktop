@@ -31,7 +31,7 @@ const routes: Routes = [
     component: EventosListComponent
   }
   , {
-    path: 'eventos/:id/panel/:id',
+    path: 'eventos/:idE/panel/:idP',
     component: CatadorFormComponent
   }, {
     path: 'eventos/:id/panel/:id/2',

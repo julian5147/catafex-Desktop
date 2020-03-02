@@ -32,7 +32,7 @@ export class ServiciosService {
     return this.http.get(`${this.API_URI}ApiRegistrarCatador`);
   }
   getPanel(id: string) {
-
+      return this.http.get(`${this.API_URI}ApiGestionarPanel?codigo=${id}`);
   }
 
 
