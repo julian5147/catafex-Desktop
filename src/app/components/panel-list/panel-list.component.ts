@@ -24,9 +24,7 @@ export class PanelListComponent implements OnInit {
     private route: ActivatedRoute) {
 
   }
-  cambiarPanel(id: string) {
-    this.asignacion.setPanel(id);
-  }
+
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(params => {

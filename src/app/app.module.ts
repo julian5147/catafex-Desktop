@@ -18,7 +18,7 @@ import { from } from 'rxjs';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { AsignarComponent } from './asignar/asignar.component';
+import { AsignarComponent } from './components/asignar/asignar.component';
 @NgModule({
   declarations: [
     AppComponent,

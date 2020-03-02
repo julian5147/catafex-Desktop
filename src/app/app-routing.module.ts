@@ -5,7 +5,7 @@ import { EventosListComponent } from './components/eventos-list/eventos-list.com
 import { HomeComponent } from './components/home/home.component';
 
 import { PanelListComponent } from './components/panel-list/panel-list.component';
-import { PanelFormComponent } from './components/panel-form/panel-form.component'
+import { AsignarComponent } from './components/asignar/asignar.component'
 import { CatadoresListComponent } from './components/catadores-list/catadores-list.component';
 import { CatadorFormComponent } from './components/catador-form/catador-form.component';
 import { EventosFormComponent } from './components/eventos-form/eventos-form.component';
@@ -34,8 +34,8 @@ const routes: Routes = [
     path: 'eventos/:idE/panel/:idP',
     component: CatadorFormComponent
   }, {
-    path: 'eventos/:id/panel/:id/2',
-    component: PanelFormComponent
+    path: 'eventos/:idE/panel/:idP/catador/:idC',
+    component: AsignarComponent
   },
   {
     path: 'eventos/:id/panel',

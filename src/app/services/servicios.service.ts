@@ -22,9 +22,10 @@ export class ServiciosService {
     return this.http.get(`${this.API_URI}ApiGestionarEvento`);
   }
 
-  getPaneles() {
-
+  getEvento(id: string) {
+    return this.http.get(`${this.API_URI}ApiGestionarEvento?codigo=${id}`);
   }
+
   getPanelesEvento(id: string) {
     return this.http.get(`${this.API_URI}Panel/obtenerPanelesPorEvento?codEvento=${id}`);
   }
@@ -32,14 +33,9 @@ export class ServiciosService {
     return this.http.get(`${this.API_URI}ApiRegistrarCatador`);
   }
   getPanel(id: string) {
-      return this.http.get(`${this.API_URI}ApiGestionarPanel?codigo=${id}`);
+    return this.http.get(`${this.API_URI}ApiGestionarPanel?codigo=${id}`);
   }
 
-
-  prueba(id: string) {
-    console.log("prueba");
-    return this.http.get(`${this.API_URI}ApiGestionarPanel`);
-  }
 
 
 

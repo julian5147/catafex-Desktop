@@ -1,3 +1,9 @@
+<div class="row col-md-4">
+    <h1> <span class="badge badge-info">Evento: {{codigoEvento}}   Panel: {{codigoEvento}}</span></h1>
+</div>
+
+
+
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -12,8 +18,8 @@
             <th scope="row">{{catador.codigo}}</th>
             <td>{{catador.nombre}}</td>
             <td>{{catador.correo}}</td>
-            <td> <button class="btn btn-success btn-block" 
-                    routerLink="/eventos/{{codigoPanel}}/panel/{{catador.codigo}}/asignar">Asignar</button>
+            <td> <button class="btn btn-success btn-block"
+                    routerLink="/eventos/{{codigoEvento}}/panel/{{codigoPanel}}/catador/{{catador.codigo}}">Asignar</button>
             </td>
         </tr>
 
