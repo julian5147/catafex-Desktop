@@ -11,7 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AsignarComponent implements OnInit {
 
-  asignaciones: any = []
+  asignaciones: any = [];
+  cafesPanel: any = [];
   codigoPanel: string = "";
   codigoEvento: string = "";
   codigoCatador: string = "";
@@ -82,6 +83,17 @@ export class AsignarComponent implements OnInit {
       }
 
     })
+
+    this.servicioServicios.getCafesPanel(this.codigoPanel).subscribe(
+      cafes => {
+        this.cafesPanel = cafes;
+        console.log(this.cafesPanel);
+        
+      },
+      err => console.log("error")
+
+
+    )
 
   }
 

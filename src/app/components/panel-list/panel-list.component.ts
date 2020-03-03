@@ -5,6 +5,7 @@ import { Eventos } from 'src/app/models/Event';
 import { Router, ActivatedRoute } from "@angular/router";
 import { DomSanitizer } from '@angular/platform-browser';
 import * as jsPDF from 'jspdf';
+import { PDFService } from 'src/app/services/pdf.service';
 
 @Component({
   selector: 'app-panel-list',
@@ -28,7 +29,8 @@ export class PanelListComponent implements OnInit {
     private asignacion: PruebaService,
     private r: Router,
     private route: ActivatedRoute,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private pdfService: PDFService
   ) {
 
   }
@@ -41,37 +43,29 @@ export class PanelListComponent implements OnInit {
       if (e !== null) {
         newObser.push(e)
       }
+      else { newObser.push("nuevo comentario"); }
     });
 
-    this.observaciones= newObser;
+    this.observaciones = newObser;
   }
-  _Download() {
-    var doc = new jsPDF({
-
-      orientacion: 'l',
-      unit: 'pt',
-      format: "carta"
-    });  // optional parameters
-
-
-    //doc.setFontSize(40);
-    doc.text(35, 25, "Reporte");
-    doc.addImage(this.image, 'PNG', 10, 25);
-    //doc.fromHTML(document.getElementById("content"), 50, 350);
-    doc.save("test.pdf");
-
-  }
+  
   verificar(id: string) {
-    this.serviciosService.getGrafico("CP-05").subscribe(
+    this.serviciosService.getGrafico(id).subscribe(
       res => {
         if (res !== null) {
-          alert("descargando")
-          this.serviciosService.getObservaciones("CP-05").subscribe(
+
+          this.serviciosService.getObservaciones(id).subscribe(
             obs => {
               this.observaciones = obs;
+
               this.quitarNulos();
+              this.pdfService.setObservaciones(this.observaciones);
+
               this.image = 'data:image/png;base64,' + res;
-              this._Download();
+              this.pdfService.setImagen(this.image);
+              this.pdfService.setCodigoPanel(id);
+              this.r.navigate([`/eventos/{{codigoEvento}}/panel/${id}/download`]);
+              //this._Download();
 
             }, err => {
               console.log(err);

@@ -9,6 +9,7 @@ import { AsignarComponent } from './components/asignar/asignar.component'
 import { CatadoresListComponent } from './components/catadores-list/catadores-list.component';
 import { CatadorFormComponent } from './components/catador-form/catador-form.component';
 import { EventosFormComponent } from './components/eventos-form/eventos-form.component';
+import { PDFComponent } from './components/pdf/pdf.component';
 
 
 
@@ -33,6 +34,9 @@ const routes: Routes = [
   , {
     path: 'eventos/:idE/panel/:idP',
     component: CatadorFormComponent
+  }, {
+    path: 'eventos/:idE/panel/:idP/download',
+    component: PDFComponent
   }, {
     path: 'eventos/:idE/panel/:idP/catador/:idC',
     component: AsignarComponent

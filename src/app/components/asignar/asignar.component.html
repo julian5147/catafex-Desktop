@@ -3,7 +3,7 @@
 </div>
 
 
-<table class="table">
+<table class="table ">
     <thead class="thead-dark">
         <tr>
             <th scope="col">Código</th>
@@ -13,10 +13,17 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">ejemplos</th>
-            <td>ejemplo</td>
-            <td>ejemplo</td>
+        <tr *ngFor="let cafe of cafesPanel">
+            <th scope="row">{{cafe.codCafe}}</th>
+            <th scope="row">{{cafe.nombre}}</th>
+            <th scope="row"><input id="{{cafe.codCafe}}" type="text" placeholder="cantidad"></th>
         </tr>
+
     </tbody>
+
+
 </table>
+
+<div class=" row col-md-4">
+    <button class="btn btn-success  " (click)="asignar()">Asignar</button>
+</div>

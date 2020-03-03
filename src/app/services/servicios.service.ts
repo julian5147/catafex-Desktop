@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
-import { Catador } from '../models/Catador'
-import { Game } from '../models/Games'
+
 
 
 
@@ -45,5 +43,8 @@ export class ServiciosService {
     return this.http.get(`${this.API_URI}Reporte/obtenerObservaciones?codPanel=${id}`);
   }
 
+  getCafesPanel(id:string){
+    return this.http.get(`${this.API_URI}Panel/cafesTipoCafePanel?codPanel=${id}`);
+  }
 
 }

@@ -1,1 +1,26 @@
-<p>pdf works!</p>
+<button (click) ="_Download()" type="button" class="btn btn-success">Download</button>
+<br>
+<br>
+<br>
+<h1>Reporte {{reporte.codigoPanel}}</h1>
+<div class="row col-md-12">
+
+    <img [src]='image'/>
+</div>
+<div id="content" class="col-md-12">
+
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Observaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let obse of reporte.observaciones">
+                <th scope="row">{{obse}}</th>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

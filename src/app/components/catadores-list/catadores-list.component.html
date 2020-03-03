@@ -16,6 +16,8 @@
             <th scope="row">{{catador.codigo}}</th>
             <td>{{catador.nombre}}</td>
             <td>{{catador.correo}}</td>
+
+            
             <td *ngIf="catador.nivelExp ==='EXPERIMENTADO'">
                 <h5><span class="badge badge-success">{{catador.nivelExp}}</span></h5>
             </td>
