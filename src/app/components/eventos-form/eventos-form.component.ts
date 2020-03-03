@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as jsPDF from 'jspdf';
+import { ServiciosService } from 'src/app/services/servicios.service';
 @Component({
   selector: 'app-eventos-form',
   templateUrl: './eventos-form.component.html',
@@ -9,7 +10,7 @@ export class EventosFormComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private serviciosService: ServiciosService) { }
 
 
 
@@ -20,7 +21,7 @@ export class EventosFormComponent implements OnInit {
 
     var img = new Image();
     img.src = '../../../assets/grafico.jpeg';
-    
+
 
 
     var doc = new jsPDF({
@@ -35,9 +36,21 @@ export class EventosFormComponent implements OnInit {
 
 
 
-   doc.save("new.pdf");
+    doc.save("new.pdf");
   }
   ngOnInit(): void {
+
+    this.serviciosService.getGrafico("CP-05").subscribe(
+      res => {
+        console.log("___________");
+        console.log(res);
+        console.log("___________");
+      
+     },
+     err=>console.log(err)
+     
+     
+     )
 
   }
 

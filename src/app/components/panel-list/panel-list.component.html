@@ -7,7 +7,9 @@
         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center ">
             {{game.codigo}}
 
-            <i class="fas fa-address-book"></i>
+            <a (click)="verificar(game.codigo)" class="btn btn-success">
+                <i class="fas fa-download"></i>
+            </a>
 
         </div>
         <div class="card-body">
@@ -16,10 +18,28 @@
             <p>Hora: {{game.hora}} </p>
             <p>Tipo del café: {{game.tipoCafe}}</p>
 
-            <button class="btn btn-success btn-block" 
-                routerLink="/eventos/{{codigoEvento}}/panel/{{game.codigo}}"> Entrar22 </button>
+            <button class="btn btn-success btn-block" routerLink="/eventos/{{codigoEvento}}/panel/{{game.codigo}}">
+                Entrar </button>
 
         </div>
     </div>
 
+</div>
+
+
+
+<div *ngIf="false" id="content" class="row col-md-12">
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Observaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let obse of observaciones">
+                <th scope="row">{{obse}}</th>
+            </tr>
+        </tbody>
+    </table>
 </div>

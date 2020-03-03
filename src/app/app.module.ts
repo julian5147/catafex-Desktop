@@ -19,6 +19,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AsignarComponent } from './components/asignar/asignar.component';
+import { PDFComponent } from './components/pdf/pdf.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { AsignarComponent } from './components/asignar/asignar.component';
     HomeComponent,
     FooterComponent,
     NotFoundComponent,
-    AsignarComponent
+    AsignarComponent,
+    PDFComponent
   ],
   imports: [
     BrowserModule,

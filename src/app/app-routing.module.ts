@@ -47,6 +47,10 @@ const routes: Routes = [
   }
   ,
   {
+    path: 'download',
+    component: EventosFormComponent
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }
