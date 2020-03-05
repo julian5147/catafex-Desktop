@@ -1,8 +1,8 @@
 export class Asignacion {
 
-    codPanel: string = "None";
-    codEvento: string = "None";
-    codCatador: string = "None";
-    codCafe: string = "None";
-    cantVeces: number = 0;
+    codPanel: string = "";
+    codCatacion: string = "";
+    codCatador: string = "";
+    codCafe: string = "";
+    cantidad: number = 0;
 }

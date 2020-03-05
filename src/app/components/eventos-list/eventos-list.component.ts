@@ -1,7 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { PruebaService } from '../../services/prueba.service'
 import * as jsPDF from 'jspdf';
-
 import { ServiciosService } from '../../services/servicios.service'
 
 
@@ -17,7 +15,7 @@ export class EventosListComponent implements OnInit {
 
 
 
-  constructor(private serviciosService: ServiciosService, private asignacion: PruebaService) { }
+  constructor(private serviciosService: ServiciosService) { }
 
   ngOnInit(): void {
 
@@ -32,10 +30,7 @@ export class EventosListComponent implements OnInit {
     )
 
   }
-  cambiarEvento(id: string) {
-    this.asignacion.setEvento(id);
-  }
-
+ 
 
   Download() {
     const doc = new jsPDF();

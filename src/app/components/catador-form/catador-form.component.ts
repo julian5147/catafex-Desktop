@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from 'src/app/services/servicios.service';
-import { PruebaService } from 'src/app/services/prueba.service';
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -12,28 +11,14 @@ export class CatadorFormComponent implements OnInit {
   catadores: any = [];
   codigoPanel: string = "";
   codigoEvento: string = "";
+  codigoCatador: string = "";
 
 
 
-  constructor(private servicioServicios: ServiciosService, private asignacion: PruebaService,
+  constructor(private servicioServicios: ServiciosService,
     private r: Router, private route: ActivatedRoute) {
   }
-  existePanel() {
 
-
-    this.servicioServicios.getPanel(this.codigoPanel).subscribe(
-      _panel => {
-        if (_panel) {
-          this.existeEvento();
-        }
-        else {
-          alert("No se encuentra ese panel")
-          this.r.navigate([`/eventos/${this.codigoEvento}/panel`]);
-        }
-      },
-      err => console.log(err, "error")
-    );
-  }
 
   agregarCatadores() {
     this.servicioServicios.getCatadores().subscribe(
@@ -45,19 +30,26 @@ export class CatadorFormComponent implements OnInit {
       err => console.log(err, "error")
     );
   }
-  existeEvento() {
-    this.servicioServicios.getEvento(this.codigoEvento).subscribe(
-      _evento => {
-        if (_evento) {
+
+
+  verificarParnelEvento() {
+
+    this.servicioServicios.getVerificarPanelEvento(this.codigoPanel, this.codigoEvento).subscribe(
+
+      _res => {
+        if (_res) {
           this.agregarCatadores();
-        } else {
-          alert("No se encuentra ese evento")
-          this.r.navigate([`/eventos`]);
+          //  this.r.navigate([`/eventos/${this.codigoEvento}/panel/${this.codigoPanel}/catador/${this.codigoCatador}`])
+        }
+        else {
+          alert("El panel no pertenece a ese evento")
+          this.r.navigate(["/home"])
         }
       },
-      err => console.log(err, "error")
+      err => {
+        console.log(err);
+      }
     )
-
   }
 
   ngOnInit(): void {
@@ -66,11 +58,11 @@ export class CatadorFormComponent implements OnInit {
       if (params.has('idP')) {
         this.codigoPanel = params.get('idP');
         this.codigoEvento = params.get('idE');
-        this.asignacion.setPanel(this.codigoPanel);
-        this.asignacion.setEvento(this.codigoEvento);
+    
+     
       }
 
-      this.existePanel();
+      this.verificarParnelEvento();
 
     })
 

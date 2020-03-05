@@ -1,8 +1,3 @@
-<div class="row col-md-4">
-    <h1> <span class="badge badge-info">Evento: ejemplo Panel: ejemplo</span></h1>
-</div>
-
-
 <table class="table ">
     <thead class="thead-dark">
         <tr>
@@ -13,17 +8,19 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let cafe of cafesPanel">
-            <th scope="row">{{cafe.codCafe}}</th>
-            <th scope="row">{{cafe.nombre}}</th>
-            <th scope="row"><input id="{{cafe.codCafe}}" type="text" placeholder="cantidad"></th>
-        </tr>
+        <div class="content" id="content">
+            <tr *ngFor="let cafe of cafesPanel">
+                <th class="codigoCafe" id="cafe.codCafe" scope="row">{{cafe.codCafe}}</th>
+                <th class="nombreCafe" scope="row">{{cafe.nombre}}</th>
+                <th scope="row"><input class="cantidadCafe" id="{{cafe.codCafe}}" type="text" placeholder="cantidad">
+                </th>
+            </tr>
+        </div>
 
     </tbody>
-
-
 </table>
 
-<div class=" row col-md-4">
-    <button class="btn btn-success  " (click)="asignar()">Asignar</button>
+<div class=" row col-md-12">
+    <button class="btn btn-success  btnx ml-auto" (click)="asignar()">Asignar</button>
 </div>
+

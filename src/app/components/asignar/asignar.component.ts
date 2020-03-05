@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Asignacion } from 'src/app/models/Asignacion';
 import { ServiciosService } from 'src/app/services/servicios.service';
-import { PruebaService } from 'src/app/services/prueba.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,19 +10,47 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AsignarComponent implements OnInit {
 
-  asignaciones: any = [];
+  asignaciones: Asignacion[] = [];
   cafesPanel: any = [];
   codigoPanel: string = "";
   codigoEvento: string = "";
   codigoCatador: string = "";
 
-  constructor(private servicioServicios: ServiciosService, private asignacion: PruebaService,
+  constructor(private servicioServicios: ServiciosService,
     private r: Router, private route: ActivatedRoute) { }
 
 
 
 
-  asignar() { }
+  asignar() {
+    let cafesCodigos = document.getElementsByClassName("codigoCafe")
+    let cafesCantidad = document.getElementsByClassName("cantidadCafe")
+
+    for (var i = 0; i < cafesCodigos.length; i++) {
+      let asignacion: Asignacion = new Asignacion();
+
+      asignacion.codPanel = this.codigoPanel;
+      asignacion.cantidad = parseInt((<HTMLInputElement>cafesCantidad[i]).value);
+      asignacion.codCatador = this.codigoCatador;
+      asignacion.codCafe = cafesCodigos[i].innerHTML;
+
+      this.asignaciones.push(asignacion);
+    }
+    console.log("::::::::::::::::::::::::::::::::::::::");
+    console.log(this.asignaciones);
+    console.log("::::::::::::::::::::::::::::::::::::::");
+
+
+    this.servicioServicios.postAsignacion(this.asignaciones).subscribe(
+      res => {
+        alert(res)
+      },
+      err => { console.log(err); }
+
+
+    )
+
+  }
   existeCatador() {
     this.servicioServicios.getPanel(this.codigoPanel).subscribe(
       _panel => {
@@ -39,7 +66,7 @@ export class AsignarComponent implements OnInit {
     );
 
   }
-
+  GuardarAsignacion() { }
   existePanel() {
     this.servicioServicios.getPanel(this.codigoPanel).subscribe(
       _panel => {
@@ -77,9 +104,7 @@ export class AsignarComponent implements OnInit {
         this.codigoCatador = params.get('idC');
         this.codigoPanel = params.get('idP');
         this.codigoEvento = params.get('idE');
-        this.asignacion.setPanel(this.codigoPanel);
-        this.asignacion.setEvento(this.codigoEvento);
-        this.asignacion.setCatador(this.codigoCatador);
+
       }
 
     })
@@ -88,7 +113,7 @@ export class AsignarComponent implements OnInit {
       cafes => {
         this.cafesPanel = cafes;
         console.log(this.cafesPanel);
-        
+
       },
       err => console.log("error")
 

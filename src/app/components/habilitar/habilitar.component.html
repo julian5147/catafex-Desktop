@@ -1,0 +1,21 @@
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Nivel experiencia</th>
+            <th scope="col">Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let catador of catadores">
+            <th scope="row">{{catador.codigo}}</th>
+            <td>{{catador.nombre}}</td>
+            <td>{{catador.nivelExp}}</td>
+            <td>
+                <button (click)="habilitar(catador.codigo)" class="btn btn-success btn-block">Habilitar</button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>

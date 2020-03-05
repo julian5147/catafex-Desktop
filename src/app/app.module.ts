@@ -8,8 +8,6 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { CatadorFormComponent } from './components/catador-form/catador-form.component';
 import { CatadoresListComponent } from './components/catadores-list/catadores-list.component';
 import { EventosListComponent } from './components/eventos-list/eventos-list.component';
-import { EventosFormComponent } from './components/eventos-form/eventos-form.component';
-import { PanelFormComponent } from './components/panel-form/panel-form.component';
 import { PanelListComponent } from './components/panel-list/panel-list.component';
 import { ServiciosService } from './services/servicios.service'
 
@@ -20,6 +18,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AsignarComponent } from './components/asignar/asignar.component';
 import { PDFComponent } from './components/pdf/pdf.component';
+import { HabilitarComponent } from './components/habilitar/habilitar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,14 +26,13 @@ import { PDFComponent } from './components/pdf/pdf.component';
     CatadorFormComponent,
     CatadoresListComponent,
     EventosListComponent,
-    EventosFormComponent,
-    PanelFormComponent,
     PanelListComponent,
     HomeComponent,
     FooterComponent,
     NotFoundComponent,
     AsignarComponent,
-    PDFComponent
+    PDFComponent,
+    HabilitarComponent
   ],
   imports: [
     BrowserModule,
