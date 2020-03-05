@@ -14,8 +14,10 @@ export class CatadoresListComponent implements OnInit {
   constructor(private servicioServicios: ServiciosService) {
 
   }
-
-  ngOnInit(): void {
+  /***
+   * 
+   */
+  obtenerCatadores() {
     this.servicioServicios.getCatadores().subscribe(
       res => {
         this.catadores = res;
@@ -24,6 +26,11 @@ export class CatadoresListComponent implements OnInit {
       },
       err => console.log(err, "error")
     );
+
+  }
+  ngOnInit(): void {
+
+    this.obtenerCatadores();
   }
 
 }

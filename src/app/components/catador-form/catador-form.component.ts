@@ -18,7 +18,9 @@ export class CatadorFormComponent implements OnInit {
   constructor(private servicioServicios: ServiciosService,
     private r: Router, private route: ActivatedRoute) {
   }
-
+  /**
+   * 
+   */
 
   agregarCatadores() {
     this.servicioServicios.getCatadores().subscribe(
@@ -31,7 +33,9 @@ export class CatadorFormComponent implements OnInit {
     );
   }
 
-
+  /**
+   * 
+   */
   verificarParnelEvento() {
 
     this.servicioServicios.getVerificarPanelEvento(this.codigoPanel, this.codigoEvento).subscribe(
@@ -39,7 +43,6 @@ export class CatadorFormComponent implements OnInit {
       _res => {
         if (_res) {
           this.agregarCatadores();
-          //  this.r.navigate([`/eventos/${this.codigoEvento}/panel/${this.codigoPanel}/catador/${this.codigoCatador}`])
         }
         else {
           alert("El panel no pertenece a ese evento")
@@ -54,20 +57,12 @@ export class CatadorFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-
       if (params.has('idP')) {
         this.codigoPanel = params.get('idP');
         this.codigoEvento = params.get('idE');
-    
-     
       }
-
       this.verificarParnelEvento();
-
     })
-
-
-
   }
 }
 

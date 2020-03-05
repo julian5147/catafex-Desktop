@@ -21,6 +21,10 @@ export class PDFComponent implements OnInit {
     private pdfServices: PDFService,
     private sanitizer: DomSanitizer,
     private r: ActivatedRoute) { }
+
+  /**
+   * 
+   */
   _Download() {
     var doc = new jsPDF({
 
@@ -36,16 +40,21 @@ export class PDFComponent implements OnInit {
     doc.fromHTML(document.getElementById("content"), 50, 350);
     doc.save("test.pdf");
   }
+  /**
+   * 
+   */
 
-  ngOnInit(): void {
-
+  obtenerReporte() {
     this.reporte = this.pdfServices.getReporte();
-    alert(this.reporte.codigoPanel)
-    if (this.reporte.codigoPanel === ""){
+    if (this.reporte.codigoPanel === "") {
 
       this.router.navigate(["/home"])
     }
 
     this.image = this.sanitizer.bypassSecurityTrustUrl(this.reporte.image);
+  }
+  ngOnInit(): void {
+
+    this.obtenerReporte();
   }
 }

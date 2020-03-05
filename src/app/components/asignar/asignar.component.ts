@@ -15,13 +15,16 @@ export class AsignarComponent implements OnInit {
   codigoPanel: string = "";
   codigoEvento: string = "";
   codigoCatador: string = "";
+  cedulaCatador: string = "";
 
   constructor(private servicioServicios: ServiciosService,
     private r: Router, private route: ActivatedRoute) { }
 
 
 
-
+  /**
+   * 
+   */
   asignar() {
     let cafesCodigos = document.getElementsByClassName("codigoCafe")
     let cafesCantidad = document.getElementsByClassName("cantidadCafe")
@@ -36,67 +39,59 @@ export class AsignarComponent implements OnInit {
 
       this.asignaciones.push(asignacion);
     }
-    console.log("::::::::::::::::::::::::::::::::::::::");
-    console.log(this.asignaciones);
-    console.log("::::::::::::::::::::::::::::::::::::::");
 
 
     this.servicioServicios.postAsignacion(this.asignaciones).subscribe(
-      res => {
-        alert(res)
-      },
+      res => { console.log(res); },
       err => { console.log(err); }
-
-
     )
 
   }
-  existeCatador() {
-    this.servicioServicios.getPanel(this.codigoPanel).subscribe(
-      _panel => {
-        if (_panel) {
-          this.existeEvento();
+
+  /**
+   * 
+   */
+  verificarParnelEvento() {
+
+    this.servicioServicios.getVerificarPanelEvento(this.codigoPanel, this.codigoEvento).subscribe(
+
+      _res => {
+        if (_res) {
+          this.servicioServicios.getCatadorHabilitado(this.codigoCatador).subscribe(
+            _cat => {
+              if (_cat) {
+                this.servicioServicios.getCafesPanel(this.codigoPanel).subscribe(
+                  cafes => {
+                    this.cafesPanel = cafes;
+                    console.log(this.cafesPanel);
+
+                  },
+                  err => console.log("error")
+                )
+
+              }
+              else {
+                alert("El panel no pertenece a ese evento")
+                this.r.navigate(["/home"])
+              }
+            },
+            err => {
+              console.log(err);
+            }
+          )
         }
         else {
-          alert("No se encuentra ese panel")
-          this.r.navigate([`/eventos/${this.codigoEvento}/panel`]);
+          alert("El panel no pertenece a ese evento")
+          this.r.navigate(["/home"])
         }
       },
-      err => console.log(err, "error")
-    );
-
-  }
-  GuardarAsignacion() { }
-  existePanel() {
-    this.servicioServicios.getPanel(this.codigoPanel).subscribe(
-      _panel => {
-        if (_panel) {
-          this.existeEvento();
-        }
-        else {
-          alert("No se encuentra ese panel")
-          this.r.navigate([`/eventos/${this.codigoEvento}/panel`]);
-        }
-      },
-      err => console.log(err, "error")
-    );
-  }
-
-
-  existeEvento() {
-    this.servicioServicios.getEvento(this.codigoEvento).subscribe(
-      _evento => {
-        if (_evento) {
-          this.asignar();
-        } else {
-          alert("No se encuentra ese evento")
-          this.r.navigate([`/eventos`]);
-        }
-      },
-      err => console.log(err, "error")
+      err => {
+        console.log(err);
+      }
     )
-
   }
+
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
 
@@ -109,16 +104,7 @@ export class AsignarComponent implements OnInit {
 
     })
 
-    this.servicioServicios.getCafesPanel(this.codigoPanel).subscribe(
-      cafes => {
-        this.cafesPanel = cafes;
-        console.log(this.cafesPanel);
-
-      },
-      err => console.log("error")
-
-
-    )
+    this.verificarParnelEvento();
 
   }
 

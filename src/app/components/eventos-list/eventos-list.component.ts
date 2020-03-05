@@ -16,22 +16,25 @@ export class EventosListComponent implements OnInit {
 
 
   constructor(private serviciosService: ServiciosService) { }
-
   ngOnInit(): void {
-
-
+    this.obtenerEventos();
+  }
+  /**
+   * 
+   */
+  obtenerEventos() {
     this.serviciosService.getEventos().subscribe(
       res => {
-
         this.eventos = res;
       },
-
       err => console.log(err, "error")
     )
-
   }
- 
 
+
+  /**
+   * 
+   */
   Download() {
     const doc = new jsPDF();
     doc.text("some text here", 10, 10);

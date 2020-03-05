@@ -33,7 +33,9 @@ export class PanelListComponent implements OnInit {
   ) {
 
   }
-
+  /**
+   * 
+   */
   quitarNulos() {
     let newObser = [];
 
@@ -47,7 +49,10 @@ export class PanelListComponent implements OnInit {
 
     this.observaciones = newObser;
   }
-  
+  /**
+   * 
+   * @param id 
+   */
   verificar(id: string) {
     this.serviciosService.getGrafico(id).subscribe(
       res => {
@@ -76,32 +81,30 @@ export class PanelListComponent implements OnInit {
       err => console.log(err)
     )
   }
-
-
-  ngOnInit(): void {
-
-    this.route.paramMap.subscribe(params => {
-      if (params.has('id')) {
-        this.codigoEvento = params.get('id');
-      
-      }
-      else
-        alert("no contiene")
-    })
+  /**
+   * 
+   */
+  obtenerPanelesEvento() {
 
     this.paneles = [];
     if (this.codigoEvento !== "") {
       this.serviciosService.getPanelesEvento(this.codigoEvento).subscribe(
-        res => {
-          this.paneles = res;
-          console.log(res);
-        },
+        res => { this.paneles = res; },
         err => console.log(err, "error")
       )
     }
     else {
-      alert("No puede ingresar asi en el pasnel  ");
-      //  this.r.navigate(["/home"])
+      alert("No puede ingresar asi en el panel  ");
     }
+  }
+
+  ngOnInit(): void {
+
+    this.route.paramMap.subscribe(params => {
+      if (params.has('id')) { this.codigoEvento = params.get('id'); }
+      else { alert("no contiene") }
+    })
+
+    this.obtenerPanelesEvento();
   }
 }

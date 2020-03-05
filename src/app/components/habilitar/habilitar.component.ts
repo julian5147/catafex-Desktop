@@ -13,40 +13,42 @@ export class HabilitarComponent implements OnInit {
     private servicioServicios: ServiciosService,
     private r: Router,
     private route: ActivatedRoute) { }
-
+  /**
+   * 
+   * @param codCatador 
+   */
 
   habilitar(codCatador: string) {
     alert(codCatador)
     this.servicioServicios.putHabilitarCatador(codCatador).subscribe(
       _res => {
-        console.log(_res);
-     
         this.r.navigateByUrl('/', { skipLocationChange: true }).then(() =>
           this.r.navigate(["/habilitar"])
         )
 
       },
-      err => {
-        console.log(err);
-      }
+      err => { console.log(err); }
     )
   }
-  ngOnInit(): void {
-
-
-
+  /**
+   * 
+   */
+  obtenerCatadoresInhabilitados() {
     this.servicioServicios.getCatadoresInhabilitados().subscribe(
       _catadores => {
-        console.log("si");
-
-        console.log(_catadores);
-
         this.catadores = _catadores;
       },
       err => {
         console.log(err);
       }
     )
+  }
+
+
+  ngOnInit(): void {
+
+    this.obtenerCatadoresInhabilitados();
+
   }
 
 }

@@ -12,9 +12,7 @@ export class ServiciosService {
   API_URI = 'https://webapicatafex.azurewebsites.net/api/';
   evento_actual: string = ""
 
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient) { }
 
   getEventos() {
     return this.http.get(`${this.API_URI}ApiGestionarEvento`);
@@ -23,7 +21,9 @@ export class ServiciosService {
   getEvento(id: string) {
     return this.http.get(`${this.API_URI}ApiGestionarEvento?codigo=${id}`);
   }
-  getCatador(id: string) { }
+  getCatadorHabilitado(id: string) {
+    return this.http.get(`${this.API_URI}ApiRegistrarCatador/catadorHabilitado?codCatador=${id}`);
+  }
   getPanelesEvento(id: string) {
     return this.http.get(`${this.API_URI}Panel/obtenerPanelesPorEvento?codEvento=${id}`);
   }
@@ -58,7 +58,7 @@ export class ServiciosService {
 
   postAsignacion(cataciones: Asignacion[]) {
     alert(JSON.stringify(cataciones))
-    return this.http.post(`${this.API_URI}ApiAsignarCatador/asignar`,  cataciones )
+    return this.http.post(`${this.API_URI}ApiAsignarCatador/asignar`, cataciones)
   }
   getVerificarPanelEvento(idP: string, idE: string) {
     return this.http.get(`${this.API_URI}Panel/panelPerteneceEvento?codPanel=${idP}&codEvento=${idE}`);
