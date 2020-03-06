@@ -14,6 +14,8 @@ export class PDFService {
   setObservaciones(observaciones) { this.reporte.observaciones = observaciones; }
   setImagen(imagen) { this.reporte.image = imagen; }
 
-
+  /**
+   * retorna un reporte
+   */
   getReporte() { return this.reporte; }
 }
