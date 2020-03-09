@@ -57,7 +57,7 @@ export class ServiciosService {
 
 
   postAsignacion(cataciones: Asignacion[]) {
-    alert(JSON.stringify(cataciones))
+
     return this.http.post(`${this.API_URI}ApiAsignarCatador/asignar`, cataciones)
   }
   getVerificarPanelEvento(idP: string, idE: string) {

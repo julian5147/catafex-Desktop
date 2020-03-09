@@ -42,7 +42,12 @@ export class AsignarComponent implements OnInit {
 
 
     this.servicioServicios.postAsignacion(this.asignaciones).subscribe(
-      res => { console.log(res); },
+
+      res => {
+        alert("Se asignó correctamente")
+        this.r.navigate([`/eventos/${this.codigoEvento}/panel/${this.codigoPanel}`])
+      },
+
       err => { console.log(err); }
     )
 
@@ -57,8 +62,13 @@ export class AsignarComponent implements OnInit {
 
       _res => {
         if (_res) {
+          console.log("errors");
+          
+
           this.servicioServicios.getCatadorHabilitado(this.codigoCatador).subscribe(
             _cat => {
+              console.log(" asdopasdasd");
+              
               if (_cat) {
                 this.servicioServicios.getCafesPanel(this.codigoPanel).subscribe(
                   cafes => {
@@ -66,7 +76,7 @@ export class AsignarComponent implements OnInit {
                     console.log(this.cafesPanel);
 
                   },
-                  err => console.log("error")
+                  err => alert("error")
                 )
 
               }
