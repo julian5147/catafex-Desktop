@@ -38,7 +38,7 @@ export class PDFComponent implements OnInit {
     doc.text(80, 50, "Reporte: " + this.reporte.codigoPanel);
     doc.addImage(this.reporte.image, 'PNG', 10, 70);
     doc.fromHTML(document.getElementById("content"), 50, 350);
-    doc.save("test.pdf");
+    doc.save(`reporte${this.reporte.codigoPanel}.pdf`);
   }
   /**
    * 

@@ -1,18 +1,18 @@
-<div class="col-md-4" *ngFor="let game of eventos">
+<div class="col-md-4" *ngFor="let evento of eventos">
 
     <div class="card text-center">
         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center ">
-            {{game.codigo}}
+            {{evento.codigo}}
 
             <i class="fas fa-calendar-alt"></i>
 
         </div>
         <div class="card-body">
 
-            <p>{{game.nombre}} </p>
-            <p>{{game.fecha}}</p>
+            <p>{{evento.nombre}} </p>
+            <p>{{evento.fecha}}</p>
             <button class="btn btn-success btn-block" 
-                routerLink="/eventos/{{game.codigo}}/panel">
+                routerLink="/eventos/{{evento.codigo}}/panel">
                 Entrar
             </button>
 

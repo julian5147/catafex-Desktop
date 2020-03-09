@@ -35,11 +35,6 @@ export class EventosListComponent implements OnInit {
   /**
    * 
    */
-  Download() {
-    const doc = new jsPDF();
-    doc.text("some text here", 10, 10);
 
-    doc.save("test.pdf");
-  }
 
 }
