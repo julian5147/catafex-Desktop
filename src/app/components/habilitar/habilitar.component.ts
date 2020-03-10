@@ -15,11 +15,13 @@ export class HabilitarComponent implements OnInit {
     private route: ActivatedRoute) { }
   /**
    * 
-   * @param codCatador 
+   * @param codCatador identificador del catador que se desea habilitar
+   * 
+   * llama al servicio services para habilitar el catador seleccionado
    */
 
   habilitar(codCatador: string) {
-    alert(codCatador)
+
     this.servicioServicios.putHabilitarCatador(codCatador).subscribe(
       _res => {
         this.r.navigateByUrl('/', { skipLocationChange: true }).then(() =>
@@ -31,7 +33,7 @@ export class HabilitarComponent implements OnInit {
     )
   }
   /**
-   * 
+   * llama al servicio services para obtener los catadores inhabilitados
    */
   obtenerCatadoresInhabilitados() {
     this.servicioServicios.getCatadoresInhabilitados().subscribe(

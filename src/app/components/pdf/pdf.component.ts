@@ -23,7 +23,8 @@ export class PDFComponent implements OnInit {
     private r: ActivatedRoute) { }
 
   /**
-   * 
+   * Agrega los datos de las observaciones y del gráfico del 
+   * panel seleccionado y descarga el PDF con una extención .pdf
    */
   _Download() {
     var doc = new jsPDF({
@@ -41,7 +42,7 @@ export class PDFComponent implements OnInit {
     doc.save(`reporte${this.reporte.codigoPanel}.pdf`);
   }
   /**
-   * 
+   * llama al servicio services para obtener el reporte del panel
    */
 
   obtenerReporte() {

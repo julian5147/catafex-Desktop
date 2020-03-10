@@ -15,7 +15,7 @@ export class CatadoresListComponent implements OnInit {
 
   }
   /***
-   * 
+   * llama al servicio services para obtener los catadores habilitados
    */
   obtenerCatadores() {
     this.servicioServicios.getCatadores().subscribe(

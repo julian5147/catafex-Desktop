@@ -20,11 +20,31 @@ export class AsignarComponent implements OnInit {
   constructor(private servicioServicios: ServiciosService,
     private r: Router, private route: ActivatedRoute) { }
 
+  /**
+   * llama al servicio services para guardar una nueva asignación
+   */
+  guardarAsignacion() {
 
+
+    this.servicioServicios.postAsignacion(this.asignaciones).subscribe(
+
+      res => {
+        alert("Se asignó correctamente")
+        this.r.navigate([`/eventos/${this.codigoEvento}/panel/${this.codigoPanel}`])
+      },
+
+      err => { console.log(err); }
+    )
+  }
 
   /**
+   * Recorre todos los cafes por código desde el asignar.components.html 
+   * para capturar la cantidad de veces que va a catar el catador seleccionado,
+   * por cada café se guarda en una catación
    * 
    */
+
+
   asignar() {
     let cafesCodigos = document.getElementsByClassName("codigoCafe")
     let cafesCantidad = document.getElementsByClassName("cantidadCafe")
@@ -40,21 +60,14 @@ export class AsignarComponent implements OnInit {
       this.asignaciones.push(asignacion);
     }
 
-
-    this.servicioServicios.postAsignacion(this.asignaciones).subscribe(
-
-      res => {
-        alert("Se asignó correctamente")
-        this.r.navigate([`/eventos/${this.codigoEvento}/panel/${this.codigoPanel}`])
-      },
-
-      err => { console.log(err); }
-    )
+    this.guardarAsignacion();
 
   }
 
   /**
-   * 
+   * Verifica que los datos ingresados por la URL correspondan a datos
+   * válidos (Ej: que el panel exista y que pertenezca al evento, que el 
+   * evento exista, que el catador esté habilitado)
    */
   verificarParnelEvento() {
 
@@ -63,12 +76,11 @@ export class AsignarComponent implements OnInit {
       _res => {
         if (_res) {
           console.log("errors");
-          
+
 
           this.servicioServicios.getCatadorHabilitado(this.codigoCatador).subscribe(
             _cat => {
-              console.log(" asdopasdasd");
-              
+
               if (_cat) {
                 this.servicioServicios.getCafesPanel(this.codigoPanel).subscribe(
                   cafes => {

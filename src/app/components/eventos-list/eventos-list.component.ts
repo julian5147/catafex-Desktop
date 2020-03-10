@@ -19,8 +19,9 @@ export class EventosListComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerEventos();
   }
+
   /**
-   * 
+   * llama al servicio services para obtener todos los eventos
    */
   obtenerEventos() {
     this.serviciosService.getEventos().subscribe(
@@ -30,11 +31,4 @@ export class EventosListComponent implements OnInit {
       err => console.log(err, "error")
     )
   }
-
-
-  /**
-   * 
-   */
-
-
 }

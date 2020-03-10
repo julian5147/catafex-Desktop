@@ -19,8 +19,8 @@ export class CatadorFormComponent implements OnInit {
     private r: Router, private route: ActivatedRoute) {
   }
   /**
-   * 
-   */
+  * llama al servicio services para obtener los catadores habilitados
+  */
 
   agregarCatadores() {
     this.servicioServicios.getCatadores().subscribe(
@@ -34,7 +34,9 @@ export class CatadorFormComponent implements OnInit {
   }
 
   /**
-   * 
+   * Verifica que los datos ingresados por la URL correspondan a datos
+   * válidos (Ej: que el panel exista y que pertenezca al evento, que el 
+   * evento exista
    */
   verificarParnelEvento() {
 

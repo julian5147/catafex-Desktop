@@ -34,7 +34,8 @@ export class PanelListComponent implements OnInit {
 
   }
   /**
-   * 
+   * se quitan de la lista de observaciones las observaciones
+   * que estén nulas
    */
   quitarNulos() {
     let newObser = [];
@@ -51,7 +52,11 @@ export class PanelListComponent implements OnInit {
   }
   /**
    * 
-   * @param id 
+   * @param id identificador del panel que se desea consultar
+   * 
+   * Verifica que el panel ya ha finalizado, 
+   * si ya finalizó obtengo la información del gráfico  y de las observaciones
+   * y se guarda en el servicio del PDF
    */
   verificar(id: string) {
     this.serviciosService.getGrafico(id).subscribe(
@@ -82,7 +87,8 @@ export class PanelListComponent implements OnInit {
     )
   }
   /**
-   * 
+   * llama al servicio services para obtener los paneles del 
+   * evento seleccionado
    */
   obtenerPanelesEvento() {
 
