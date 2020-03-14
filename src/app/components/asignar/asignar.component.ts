@@ -33,7 +33,7 @@ export class AsignarComponent implements OnInit {
         this.r.navigate([`/eventos/${this.codigoEvento}/panel/${this.codigoPanel}`])
       },
 
-      err => { console.log(err); }
+      err => { alert(err.error); }
     )
   }
 

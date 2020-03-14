@@ -81,7 +81,7 @@ export class PanelListComponent implements OnInit {
             }
           )
         }
-        else { alert("el panel no ha finalizado") }
+        else { alert("el panel no ha finalizado o no tiene catas asignadas") }
       },
       err => console.log(err)
     )
